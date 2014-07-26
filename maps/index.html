@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Minnesota Musicians</title>
+
+
+  <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA5bktOKu-ZOssn__EHbIfvRQGO8FKZnHuTcP-EbYtSxV7eydBlhQqAmpIBZH0Ibq-0Hx7VrVWCz0eug" type="text/javascript"></script>
+  <script type="text/javascript">
+//<![CDATA[
+var geocoder = new GClientGeocoder();
+var map;
+
+function load() {
+	if (GBrowserIsCompatible()) {
+		map = new GMap2(document.getElementById("map"));
+		map.setCenter(new GLatLng(44.9833, -93.2333), 6);
+		
+		var locations = new Array()
+		locations["Hibbing lng"]="Mustang";
+		locations["Hibbing lat"]="Mustang";
+		locations["Minneapolis lng"]="Station Wagon";
+		locations["Minneapolis lat"]="Station Wagon";
+		locations["Uptown lng"]="SUV";
+		locations["Uptown lat"]="SUV";
+		locations["Tangletown lng"]="SUV";
+		locations["Tangletown lat"]="SUV";
+		locations["St. Paul lng"]="SUV";
+		locations["St. Paul lat"]="SUV";
+		locations["Duluth lng"]="SUV";
+		locations["Duluth lat"]="SUV";
+
+		showAddress("Minneapolis");
+
+	}
+}
+
+function showAddress(address) {
+  geocoder.getLatLng(
+    address,
+    function(point) {
+      if (!point) {
+        alert(address + " not found");
+      } else {
+        var marker = new GMarker(point);
+        map.addOverlay(marker);
+        marker.openInfoWindowHtml(address);
+      }
+    }
+  );
+}
+//]]>
+  </script>
+</head>
+
+
+<body onload="load()" onunload="GUnload()">
+
+<div id="map" style="width: 500px; height: 300px;"></div>
+
+</body>
+</html>
